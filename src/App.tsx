@@ -2,12 +2,14 @@ import React from 'react';
 import TodoList from './components/TodoList';
 import './App.css';
 import styled from 'styled-components';
+import AddTodo from './components/AddTodo';
 
 function App() {
   return (
     <div className="App">
       <AppContainer>
         <h1>Midas Todo App</h1>
+        <AddTodo />
         <TodoList />
       </AppContainer>
     </div>
