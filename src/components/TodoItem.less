@@ -1,0 +1,71 @@
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.todoItemContainer {
+    .container;
+    color: #000;
+    text-decoration-line: none;
+    justify-content: space-between;
+
+    &.checked {
+        color: #ccc;
+        text-decoration-line: line-through;
+    }
+
+}
+
+.contentContainer {
+    .container;
+    min-height: 60px;
+}
+
+.boxContainer {
+    .container;
+    height: 100%;
+}
+
+.buttonContainer {
+    .boxContainer
+
+}
+
+.checkBox {
+    height: 25px;
+    width: 25px;
+    margin: 10px;
+    background-color: #333;
+    color: #333;
+    accent-color: #ddd;
+}
+
+.colorBox {
+    //background-color: ${(props) => BOX_COLORS[props.colorIndex] || `#000`};
+    height: 40px;
+    width: 5px;
+}
+
+.input {
+    border-width: 0 0 1px 0;
+    text-align: center;
+}
+
+.icon {
+    padding: 5px;
+    margin: 5px;
+}
+
+.button {
+    //background-color:
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    height: 100%;
+
+    > span {
+        .icon
+    }
+}
+

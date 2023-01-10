@@ -1,23 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TodoList from './components/TodoList';
-import './App.css';
-import styled from 'styled-components';
+import style from './App.less';
+import TodoStore, { TodoStoreContext } from './stores/TodoStore';
 import AddTodo from './components/AddTodo';
 
 function App() {
-  return (
-    <div className="App">
-      <AppContainer>
-        <h1>Midas Todo App</h1>
-        <AddTodo />
-        <TodoList />
-      </AppContainer>
-    </div>
-  );
+    const [todoStore] = useState(new TodoStore());
+
+    return (
+        <TodoStoreContext.Provider value={todoStore}>
+            <div className={style.App}>
+                <h1>Midas Todo App</h1>
+                <AddTodo />
+                <TodoList />
+            </div>
+        </TodoStoreContext.Provider>
+    );
 }
 
 export default App;
-
-const AppContainer = styled.div`
-  margin: auto;
-`;
