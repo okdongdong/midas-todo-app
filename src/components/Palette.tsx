@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Palette.less';
 import { BOX_COLORS, useTodoStore } from '../stores/TodoStore';
 import { observer } from 'mobx-react';
+import classNames from 'classnames/bind';
 
 interface Props {
     todoId?: string | undefined;
@@ -9,31 +10,22 @@ interface Props {
 }
 
 const Palette = observer((props: Props) => {
-    const { paletteOpen, setColorIndex, updateColorIndex } = useTodoStore();
+    const { setColorIndex, updateColorIndex } = useTodoStore();
     const { todoId, selectedColorIndex } = props;
-
+    const cx = classNames.bind(styles);
     const handleClick = (index: number) => {
         if (todoId === undefined) setColorIndex(index);
         else updateColorIndex(todoId, index);
     };
 
     return (
-        <>
-            {paletteOpen && (
-                <div className={styles.palette}>
-                    {BOX_COLORS.map((color, index) => (
-                        <div
-                            className={styles.paletteItem}
-                            key={index}
-                            style={{
-                                border: `3px ${index === selectedColorIndex ? `#2f2` : `#fff`} solid`,
-                                backgroundColor: `${color}`,
-                            }}
-                            onClick={() => handleClick(index)}></div>
-                    ))}
-                </div>
-            )}
-        </>
+        <div className={styles.palette}>
+            {Array(10)
+                .fill(null)
+                .map((_, index) => (
+                    <div className={cx(`paletteItem`, `boxColor${index}`, index === selectedColorIndex && `selected`)} key={index} onClick={() => handleClick(index)}></div>
+                ))}
+        </div>
     );
 });
 

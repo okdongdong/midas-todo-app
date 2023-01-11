@@ -18,7 +18,7 @@ export class Todo {
         this.id = uuidv4();
         this.content = content;
         this.colorIndex = colorIndex;
-        this.tempContent = '';
+        this.tempContent = content;
         this.checked = false;
         this.isUpdate = false;
         this.isColorUpdate = false;
@@ -33,7 +33,7 @@ class TodoStore {
 
     @action.bound
     addTodo(todo: Todo) {
-        this.todos = [...this.todos, { ...todo, id: uuidv4() }];
+        this.todos = [...this.todos, todo];
     }
 
     @action.bound
@@ -132,14 +132,3 @@ export const TodoStoreContext = createContext<TodoStore | null>(null);
 export function useTodoStore() {
     return useContext(TodoStoreContext) as unknown as TodoStore;
 }
-
-// autorun(() => {
-//     TodoStore.todos = JSON.parse(localStorage.getItem('todos') || '[]');
-// });
-//
-// reaction(
-//     () => TodoStore.todos,
-//     (todos) => {
-//         localStorage.setItem('todos', JSON.stringify(todos));
-//     },
-// );

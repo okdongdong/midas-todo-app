@@ -23,10 +23,15 @@ const TodoItem = observer((props: Todo) => {
                 <div className={styles.buttonContainer}>
                     {isUpdate ? (
                         <>
-                            <button className={styles.button} style={{ backgroundColor: '#7f7' }} onClick={() => updateTodo(id, tempContent)}>
+                            <button className={classNames(styles.button, styles.updateButton)} onClick={() => updateTodo(id, tempContent)}>
                                 <span className="material-symbols-outlined">check</span>
                             </button>
-                            <button className={styles.button} onClick={() => setTempContent(id, '')}>
+                            <button
+                                className={styles.button}
+                                onClick={() => {
+                                    setTempContent(id, content);
+                                    toggleUpdate(id);
+                                }}>
                                 <span className="material-symbols-outlined">close</span>
                             </button>
                         </>
@@ -35,7 +40,7 @@ const TodoItem = observer((props: Todo) => {
                             <button className={styles.button} onClick={() => toggleUpdate(id)}>
                                 <span className="material-symbols-outlined">edit</span>
                             </button>
-                            <button className={styles.button} style={{ backgroundColor: '#f66' }} onClick={() => deleteTodo(id)}>
+                            <button className={classNames(styles.button, styles.deleteButton)} onClick={() => deleteTodo(id)}>
                                 <span className="material-symbols-outlined">delete</span>
                             </button>
                         </>

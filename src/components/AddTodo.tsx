@@ -5,7 +5,7 @@ import Palette from './Palette';
 import { observer } from 'mobx-react';
 
 const AddTodo = observer(() => {
-    const { addTodo, newTodo, colorIndex, setNewTodo, togglePaletteOpen, boxColor } = useTodoStore();
+    const { addTodo, newTodo, colorIndex, setNewTodo, paletteOpen, togglePaletteOpen, boxColor } = useTodoStore();
 
     const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -25,7 +25,7 @@ const AddTodo = observer(() => {
                     <span className="material-symbols-outlined">add</span>
                 </button>
             </form>
-            <Palette selectedColorIndex={colorIndex} />
+            {paletteOpen && <Palette selectedColorIndex={colorIndex} />}
         </>
     );
 });
